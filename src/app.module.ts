@@ -12,6 +12,7 @@ import { OrdenesModule } from './ordenes/ordenes.module';
 import { AuthModule } from './auth/auth.module';
 import { NotificacionesModule } from './notificaciones/notificaciones.module';
 import { ReportesModule } from './reportes/reportes.module';
+import { CajaModule } from './caja/caja.module';
 
 @Module({
   imports: [
@@ -30,6 +31,7 @@ import { ReportesModule } from './reportes/reportes.module';
     OrdenesModule,
     NotificacionesModule,
     ReportesModule,
+    CajaModule,
   ],
   providers: [
     {

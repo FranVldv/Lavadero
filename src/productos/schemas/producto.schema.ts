@@ -13,6 +13,12 @@ export class Producto {
 
   @Prop({ default: 0, min: 0 })
   stockActual: number;
+
+  @Prop({ default: 0.1, min: 0 })
+  consumoBasePorLavado: number; // Ej: 0.1L para auto base
+
+  @Prop({ default: 2, min: 0 })
+  stockMinimo: number; // Umbral de alerta
 }
 
 export const ProductoSchema = SchemaFactory.createForClass(Producto);

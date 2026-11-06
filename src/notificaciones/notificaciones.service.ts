@@ -35,6 +35,31 @@ export class NotificacionesService {
     await this.enviarWhatsApp(this.ownerPhone, mensaje);
   }
 
+  async notificarAutoListo(datos: {
+    telefono: string;
+    nombreCliente: string;
+    patente: string;
+    total: number;
+    alias?: string;
+  }): Promise<void> {
+    const aliasTexto = datos.alias ? `\n💳 *Alias transferencia / MP:* \`${datos.alias}\`` : '';
+    const mensaje =
+      `¡Hola ${datos.nombreCliente || 'Estimado cliente'}! 👋🚗\n\n` +
+      `Tu vehículo patente *${datos.patente.toUpperCase()}* ya está *LISTO PARA RETIRAR* en nuestro lavadero.\n\n` +
+      `💰 *Total a abonar:* $${datos.total.toLocaleString('es-AR')}${aliasTexto}\n\n` +
+      `¡Te esperamos! Muchas gracias por confiar en nosotros. ✨`;
+
+    await this.enviarWhatsApp(datos.telefono, mensaje);
+  }
+
+  async notificarCierreDiario(resumen: string): Promise<void> {
+    await this.enviarWhatsApp(this.ownerPhone, resumen);
+  }
+
+  async enviarMensajeGenerico(destino: string, texto: string): Promise<void> {
+    await this.enviarWhatsApp(destino, texto);
+  }
+
   private async enviarWhatsApp(destino: string, texto: string): Promise<void> {
     if (!this.phoneNumberId || !this.accessToken || !destino) {
       this.logger.warn(

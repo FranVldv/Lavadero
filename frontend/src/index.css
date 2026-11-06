@@ -647,3 +647,136 @@ body {
   text-align: center;
   font-weight: 500;
 }
+
+/* ──────────────────────────────────────────────────────────
+   ESTILOS: ASISTENTE DEL DUEÑO & PANTALLAS TÁCTILES
+   ────────────────────────────────────────────────────────── */
+
+/* Botones Táctiles Extra Grandes para Manos Húmedas */
+.btn-touch-xl {
+  min-height: 54px;
+  padding: 14px 20px;
+  font-size: 16px;
+  font-weight: 700;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: transform 0.1s ease, filter 0.2s ease;
+  user-select: none;
+}
+.btn-touch-xl:active {
+  transform: scale(0.97);
+}
+
+/* Tarjeta Box de Lavado en Vivo */
+.box-card-live {
+  background-color: var(--bg-card);
+  border: 2px solid var(--border-color);
+  border-radius: 16px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  position: relative;
+  transition: var(--transition-smooth);
+}
+.box-card-live.active {
+  border-color: var(--primary);
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.15);
+}
+.box-card-live.delayed {
+  border-color: var(--danger);
+  box-shadow: 0 0 20px rgba(248, 113, 113, 0.2);
+}
+
+/* Chips Rápidos de Caja Chica */
+.chips-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.chip-btn {
+  background-color: var(--bg-input);
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+.chip-btn:hover {
+  background-color: var(--primary-glow);
+  border-color: var(--primary);
+  color: var(--primary);
+}
+.chip-btn:active {
+  transform: scale(0.95);
+}
+
+/* Medidor Predictivo de Insumos */
+.gauge-bar-bg {
+  width: 100%;
+  height: 10px;
+  background-color: var(--bg-input);
+  border-radius: 6px;
+  overflow: hidden;
+  margin-top: 6px;
+}
+.gauge-bar-fill {
+  height: 100%;
+  border-radius: 6px;
+  transition: width 0.5s ease-out;
+}
+.gauge-bar-fill.optimo {
+  background-color: var(--success);
+}
+.gauge-bar-fill.alerta {
+  background-color: var(--warning);
+}
+.gauge-bar-fill.critico {
+  background-color: var(--danger);
+}
+
+/* Stepper de Seguimiento en Vivo para el Cliente */
+.stepper-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 24px 0;
+}
+.stepper-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 18px;
+  border-radius: 12px;
+  background-color: var(--bg-input);
+  border: 1px solid var(--border-color);
+}
+.stepper-item.completed {
+  border-color: rgba(52, 211, 153, 0.4);
+  background-color: rgba(52, 211, 153, 0.08);
+  color: var(--success);
+}
+.stepper-item.current {
+  border-color: var(--primary);
+  background-color: rgba(56, 189, 248, 0.12);
+  color: var(--primary);
+  box-shadow: 0 0 15px rgba(56, 189, 248, 0.2);
+}
+.stepper-circle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 14px;
+}
+

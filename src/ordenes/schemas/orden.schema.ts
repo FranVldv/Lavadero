@@ -15,6 +15,19 @@ export enum MetodoPago {
   TARJETA = 'tarjeta',
 }
 
+export enum EtapaLavado {
+  INGRESADO = 'ingresado',
+  LAVADO = 'lavado',
+  SECADO = 'secado',
+  TERMINADO = 'terminado',
+}
+
+export enum CategoriaVehiculo {
+  AUTO = 'auto',
+  SUV = 'suv',
+  CAMIONETA = 'camioneta',
+}
+
 class ProductoUsado {
   @Prop({ type: Types.ObjectId, ref: 'Producto', required: true })
   producto: Types.ObjectId;
@@ -25,11 +38,26 @@ class ProductoUsado {
 
 @Schema({ timestamps: true })
 export class Orden {
-  @Prop({ type: Types.ObjectId, ref: 'Turno', required: true, unique: true })
-  turno: Types.ObjectId;
+  @Prop({ type: Types.ObjectId, ref: 'Turno', required: false })
+  turno?: Types.ObjectId;
 
   @Prop({ required: true, uppercase: true, trim: true })
   patente: string;
+
+  @Prop({ trim: true })
+  nombreCliente?: string;
+
+  @Prop({ trim: true })
+  telefonoCliente?: string;
+
+  @Prop({ trim: true, default: 'Box 1' })
+  box: string; // "Box 1", "Box 2", "Box 3"
+
+  @Prop({ enum: EtapaLavado, default: EtapaLavado.INGRESADO })
+  etapa: EtapaLavado;
+
+  @Prop({ enum: CategoriaVehiculo, default: CategoriaVehiculo.AUTO })
+  categoriaVehiculo: CategoriaVehiculo;
 
   @Prop({ type: Types.ObjectId, ref: 'Servicio', required: true })
   servicio: Types.ObjectId;
@@ -45,6 +73,12 @@ export class Orden {
 
   @Prop({ enum: EstadoOrden, default: EstadoOrden.EN_PROCESO })
   estado: EstadoOrden;
+
+  @Prop({ default: 45 })
+  tiempoEstimadoMinutos: number;
+
+  @Prop({ type: Date, default: Date.now })
+  iniciadoAt: Date;
 
   @Prop({ type: Date })
   fechaCompletada?: Date;
